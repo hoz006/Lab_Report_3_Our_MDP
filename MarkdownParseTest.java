@@ -2,12 +2,13 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.*;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MarkdownParseTest {
-
+/**
     @Test
     public void addition() {
         assertEquals(2, 1+1);
@@ -92,15 +93,37 @@ public class MarkdownParseTest {
                 "/double_\\", "/triple_\\)bracket", "/quad_\\\\", "/open_(paren"));
         assertArrayEquals(links.toArray(), Reallinks.toArray());
 
-    }
-
+    } 
+ 
     @Test
     public void testSnippets() throws IOException
     {
-        String contents = readFile("snippet-3.md");
+        Path fileName = Path.of("snippet-1.md");
+        String contents = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        ArrayList<String> Reallinks = new ArrayList<>(List.of("https://www.twitter.com","https://ucsd-cse15l-w22.github.io/","https://cse.ucsd.edu/"));
+        ArrayList<String> Reallinks = new ArrayList<>(List.of("google.com", "google.com", "ucsd.edu"));
         assertArrayEquals(Reallinks.toArray(),links.toArray());
     }
+
+    @Test
+    public void testSnippets2() throws IOException
+    {
+        Path fileName = Path.of("snippet-2.md");
+        String contents = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(contents);
+        ArrayList<String> Reallinks = new ArrayList<>(List.of("a.com", "a.com", "example.com"));
+        assertArrayEquals(Reallinks.toArray(),links.toArray());
+    }*/
+
+    @Test
+    public void testSnippets3() throws IOException
+    {
+        Path fileName = Path.of("snippet-3.md");
+        String contents = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(contents);
+        ArrayList<String> Reallinks = new ArrayList<>(List.of("https://ucsd-cse15l-w22.github.io/"));
+        assertArrayEquals(Reallinks.toArray(),links.toArray());
+    }
+    
 }
 
